@@ -1,244 +1,173 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brixa - Online Earning & Investment Platform</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>AdMaroc - منصة الربح المغربية</title>
+    <meta name="description" content="منصة مغربية للربح من الإعلانات والمهام - إربح المال من خلال مهام بسيطة">
+    <meta name="author" content="AdMaroc">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://admaroc.ma/">
+    <meta property="og:title" content="AdMaroc - منصة الربح المغربية">
+    <meta property="og:description" content="منصة مغربية للربح من الإعلانات والمهام - إربح المال من خلال مهام بسيطة">
+    <meta property="og:image" content="https://admaroc.ma/og-image.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://admaroc.ma/">
+    <meta property="twitter:title" content="AdMaroc - منصة الربح المغربية">
+    <meta property="twitter:description" content="منصة مغربية للربح من الإعلانات والمهام - إربح المال من خلال مهام بسيطة">
+    <meta property="twitter:image" content="https://admaroc.ma/og-image.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0B0E11">
+    <meta name="msapplication-navbutton-color" content="#0B0E11">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Preload Critical CSS -->
+    <style>
+        /* Critical CSS for initial load */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #0B0E11;
+            color: #EAECEF;
+            font-family: 'Cairo', sans-serif;
+            direction: rtl;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        /* Loading Screen */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0B0E11;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease-out;
+        }
+        
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #2A2E39;
+            border-top: 3px solid #FCD535;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            margin-top: 20px;
+            color: #848E9C;
+            font-size: 14px;
+        }
+        
+        /* Hide app initially */
+        #root {
+            opacity: 0;
+            transition: opacity 0.3s ease-in;
+        }
+        
+        /* RTL Specific Styles */
+        .rtl-grid {
+            direction: rtl;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #151A1F;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #2A2E39;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FCD535;
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <h1><i class="fas fa-chart-line"></i> Brixa</h1>
-            </div>
-            <div class="nav-links">
-                <a href="#features">Features</a>
-                <a href="#how-it-works">How It Works</a>
-                <a href="#testimonials">Testimonials</a>
-                <a href="login.html" class="btn-outline">Login</a>
-                <a href="register.html" class="btn-primary">Get Started</a>
-            </div>
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Build Your Financial Future with <span class="highlight">Brixa</span></h1>
-                <p>Start earning and investing with our secure, user-friendly platform designed for both beginners and experienced investors.</p>
-                <div class="hero-buttons">
-                    <a href="register.html" class="btn-primary btn-large">Start Free Trial</a>
-                    <a href="#how-it-works" class="btn-outline btn-large">Learn More</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="card floating-card-1">
-                    <i class="fas fa-wallet"></i>
-                    <h3>Smart Investments</h3>
-                    <p>AI-powered portfolio suggestions</p>
-                </div>
-                <div class="card floating-card-2">
-                    <i class="fas fa-rocket"></i>
-                    <h3>Growth Tracking</h3>
-                    <p>Real-time performance analytics</p>
-                </div>
-                <div class="card floating-card-3">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Secure & Safe</h3>
-                    <p>Bank-level security encryption</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <h2 class="section-title">Why Choose Brixa?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                    <h3>Diversified Portfolio</h3>
-                    <p>Spread your investments across multiple asset classes to minimize risk and maximize returns.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3>Quick Start</h3>
-                    <p>Get started in minutes with as little as $50. No complex paperwork or lengthy approvals.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-user-friends"></i>
-                    </div>
-                    <h3>Community Learning</h3>
-                    <p>Learn from experienced investors and share strategies with our active community.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Mobile Friendly</h3>
-                    <p>Access your portfolio and make investments on any device, anywhere, anytime.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="how-it-works">
-        <div class="container">
-            <h2 class="section-title">How Brixa Works</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Create Your Account</h3>
-                    <p>Sign up for free in just 2 minutes with our secure registration process.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Set Your Goals</h3>
-                    <p>Define your financial goals and risk tolerance to get personalized recommendations.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Start Investing</h3>
-                    <p>Choose from our curated investment options or let our AI create a portfolio for you.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3>Track & Grow</h3>
-                    <p>Monitor your portfolio performance and adjust as needed to reach your goals faster.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <h2 class="section-title">What Our Users Say</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"Brixa helped me grow my initial $500 investment to over $2,000 in just 6 months. The platform is incredibly intuitive!"</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="https://i.pravatar.cc/150?img=1" alt="Sarah Johnson">
-                        <div>
-                            <h4>Sarah Johnson</h4>
-                            <span>Teacher, 2 years with Brixa</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"As a beginner, I was nervous about investing. Brixa's educational resources and simple interface made it easy to start."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="https://i.pravatar.cc/150?img=2" alt="Michael Chen">
-                        <div>
-                            <h4>Michael Chen</h4>
-                            <span>Software Developer, 1 year with Brixa</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"The automated portfolio rebalancing saves me hours of work. I've seen consistent returns even in volatile markets."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="https://i.pravatar.cc/150?img=3" alt="Jessica Williams">
-                        <div>
-                            <h4>Jessica Williams</h4>
-                            <span>Entrepreneur, 3 years with Brixa</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <h2>Ready to Start Your Investment Journey?</h2>
-            <p>Join thousands of investors who are already building wealth with Brixa.</p>
-            <a href="register.html" class="btn-primary btn-large">Create Your Free Account</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h2><i class="fas fa-chart-line"></i> Brixa</h2>
-                    <p>Building financial futures through smart investing.</p>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Platform</h4>
-                        <a href="#features">Features</a>
-                        <a href="#how-it-works">How It Works</a>
-                        <a href="#testimonials">Success Stories</a>
-                        <a href="#">Pricing</a>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Resources</h4>
-                        <a href="#">Blog</a>
-                        <a href="#">Help Center</a>
-                        <a href="#">Investment Guides</a>
-                        <a href="#">Community</a>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Legal</h4>
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
-                        <a href="#">Risk Disclosure</a>
-                        <a href="#">Regulatory Info</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 Brixa. All rights reserved. Investing involves risk, including possible loss of principal.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="auth.js"></script>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader"></div>
+        <div class="loading-text">جاري تحميل المنصة...</div>
+    </div>
+    
+    <!-- React Root -->
+    <div id="root"></div>
+    
+    <!-- Script to hide loading screen -->
     <script>
-        // Mobile menu toggle
-        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('mobile-show');
+        // Hide loading screen when app is loaded
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const loadingScreen = document.getElementById('loading-screen');
+                const root = document.getElementById('root');
+                
+                loadingScreen.style.opacity = '0';
+                root.style.opacity = '1';
+                
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 300);
+            }, 1000);
         });
-
-        // Check if user is already logged in
-        document.addEventListener('DOMContentLoaded', function() {
-            // Check for existing session
-            const user = localStorage.getItem('brixa_user');
-            if (user) {
-                document.querySelectorAll('a[href="login.html"]').forEach(link => {
-                    link.textContent = 'Dashboard';
-                    link.href = 'dashboard.html';
+        
+        // Service Worker Registration for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('ServiceWorker registration successful');
+                }).catch(err => {
+                    console.log('ServiceWorker registration failed: ', err);
                 });
-                document.querySelectorAll('a[href="register.html"]').forEach(link => {
-                    link.textContent = 'Dashboard';
-                    link.href = 'dashboard.html';
-                });
+            });
+        }
+        
+        // Prevent context menu on images
+        document.addEventListener('contextmenu', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
             }
         });
     </script>
 </body>
-  </html>
+</html>
