@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Brixa</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <h1><i class="fas fa-chart-line"></i> Brixa</h1>
+                </a>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar" id="userAvatar">U</div>
+                <div>
+                    <div id="userName">User</div>
+                    <div style="font-size: 0.8rem; color: var(--gray-color);" id="userEmail">user@brixa.com</div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Content -->
+    <main class="dashboard-content">
+        <div class="container">
+            <div class="dashboard-stats">
+                <div class="stat-card card">
+                    <i class="fas fa-wallet"></i>
+                    <div class="stat-value" id="totalBalance">$0.00</div>
+                    <div class="stat-label">Total Balance</div>
+                </div>
+                <div class="stat-card card">
+                    <i class="fas fa-chart-line"></i>
+                    <div class="stat-value" id="totalReturns">+0.00%</div>
+                    <div class="stat-label">Total Returns</div>
+                </div>
+                <div class="stat-card card">
+                    <i class="fas fa-coins"></i>
+                    <div class="stat-value" id="activeInvestments">0</div>
+                    <div class="stat-label">Active Investments</div>
+                </div>
+                <div class="stat-card card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <div class="stat-value" id="daysActive">0</div>
+                    <div class="stat-label">Days Active</div>
+                </div>
+            </div>
+            
+            <h2 style="margin-bottom: 20px;">Available Investment Plans</h2>
+            
+            <div class="dashboard-grid">
+                <div class="investment-card card">
+                    <div class="investment-header">
+                        <h3>Starter Plan</h3>
+                        <div class="investment-amount">$50 - $500</div>
+                    </div>
+                    <div class="investment-details">
+                        <div class="detail-row">
+                            <span>Expected Returns</span>
+                            <span style="color: #28a745; font-weight: 500;">5-8% monthly</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Investment Period</span>
+                            <span>6 months</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Risk Level</span>
+                            <span>Low</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Recommended for</span>
+                            <span>Beginners</span>
+                        </div>
+                    </div>
+                    <div class="investment-actions">
+                        <button class="invest-btn" onclick="openInvestmentModal('Starter Plan', 50, 500)">Invest Now</button>
+                        <button class="invest-btn secondary" onclick="showDetails('Starter Plan')">Details</button>
+                    </div>
+                </div>
+                
+                <div class="investment-card card">
+                    <div class="investment-header">
+                        <h3>Growth Plan</h3>
+                        <div class="investment-amount">$500 - $5,000</div>
+                    </div>
+                    <div class="investment-details">
+                        <div class="detail-row">
+                            <span>Expected Returns</span>
+                            <span style="color: #28a745; font-weight: 500;">8-12% monthly</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Investment Period</span>
+                            <span>12 months</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Risk Level</span>
+                            <span>Medium</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Recommended for</span>
+                            <span>Intermediate investors</span>
+                        </div>
+                    </div>
+                    <div class="investment-actions">
+                        <button class="invest-btn" onclick="openInvestmentModal('Growth Plan', 500, 5000)">Invest Now</button>
+                        <button class="invest-btn secondary" onclick="showDetails('Growth Plan')">Details</button>
+                    </div>
+                </div>
+                
+                <div class="investment-card card">
+                    <div class="investment-header">
+                        <h3>Pro Plan</h3>
+                        <div class="investment-amount">$5,000+</div>
+                    </div>
+                    <div class="investment-details">
+                        <div class="detail-row">
+                            <span>Expected Returns</span>
+                            <span style="color: #28a745; font-weight: 500;">12-18% monthly</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Investment Period</span>
+                            <span>24 months</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Risk Level</span>
+                            <span>High</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Recommended for</span>
+                            <span>Advanced investors</span>
+                        </div>
+                    </div>
+                    <div class="investment-actions">
+                        <button class="invest-btn" onclick="openInvestmentModal('Pro Plan', 5000, 50000)">Invest Now</button>
+                        <button class="invest-btn secondary" onclick="showDetails('Pro Plan')">Details</button>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 style="margin-top: 50px; margin-bottom: 20px;">My Investments</h2>
+            
+            <div class="card" style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background-color: #f8f9fa;">
+                            <th style="padding: 15px; text-align: left;">Investment</th>
+                            <th style="padding: 15px; text-align: left;">Amount</th>
+                            <th style="padding: 15px; text-align: left;">Start Date</th>
+                            <th style="padding: 15px; text-align: left;">Returns</th>
+                            <th style="padding: 15px; text-align: left;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="investmentTable">
+                        <!-- Investments will be populated by JavaScript -->
+                        <tr>
+                            <td colspan="5" style="padding: 30px; text-align: center; color: var(--gray-color);">
+                                No investments yet. Choose a plan above to get started.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Investment Modal -->
+    <div id="investmentModal" class="modal" style="display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);">
+        <div class="card" style="background-color: white; margin: 10% auto; padding: 30px; max-width: 500px; position: relative;">
+            <span class="close-modal" onclick="closeInvestmentModal()" style="position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--gray-color);">&times;</span>
+            <h2 id="modalTitle">Invest in Starter Plan</h2>
+            <div class="form-group">
+                <label for="investmentAmount">Investment Amount ($)</label>
+                <input type="number" id="investmentAmount" class="form-control" placeholder="Enter amount" min="50" step="10">
+                <small id="amountRange">Minimum: $50, Maximum: $500</small>
+            </div>
+            <div class="form-group">
+                <label for="investmentDuration">Investment Duration (months)</label>
+                <select id="investmentDuration" class="form-control">
+                    <option value="6">6 months</option>
+                    <option value="12">12 months</option>
+                    <option value="24">24 months</option>
+                </select>
+            </div>
+            <div id="investmentSummary" style="background-color: #f8f9fa; padding: 15px; border-radius: var(--border-radius); margin-bottom: 20px;">
+                <div class="detail-row">
+                    <span>Expected Monthly Returns</span>
+                    <span id="expectedReturns">5-8%</span>
+                </div>
+                <div class="detail-row">
+                    <span>Total Expected Return</span>
+                    <span id="totalExpected">$0.00</span>
+                </div>
+            </div>
+            <button class="btn-primary" onclick="processInvestment()" style="width: 100%;">Confirm Investment</button>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal" style="display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);">
+        <div class="card" style="background-color: white; margin: 15% auto; padding: 30px; max-width: 500px; text-align: center;">
+            <div style="font-size: 3rem; color: #28a745; margin-bottom: 20px;">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Investment Successful!</h2>
+            <p id="successMessage">Your investment has been processed successfully.</p>
+            <p>A confirmation has been sent to your email.</p>
+            <button class="btn-primary" onclick="closeSuccessModal()" style="margin-top: 20px;">Continue</button>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+    <script>
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+            loadUserData();
+            loadInvestments();
+            
+            // Update investment amount when input changes
+            document.getElementById('investmentAmount')?.addEventListener('input', updateInvestmentSummary);
+        });
+        
+        function checkAuth() {
+            const user = JSON.parse(localStorage.getItem('brixa_user'));
+            if (!user) {
+                window.location.href = 'login.html';
+            }
+        }
+        
+        function loadUserData() {
+            const user = JSON.parse(localStorage.getItem('brixa_user'));
+            if (user) {
+                document.getElementById('userName').textContent = user.fullName || 'User';
+                document.getElementById('userEmail').textContent = user.email;
+                
+                // Set avatar initial
+                const initial = user.fullName ? user.fullName.charAt(0).toUpperCase() : 'U';
+                document.getElementById('userAvatar').textContent = initial;
+                
+                // Load user stats
+                document.getElementById('totalBalance').textContent = user.balance ? `$${user.balance.toFixed(2)}` : '$0.00';
+                document.getElementById('activeInvestments').textContent = user.investments ? user.investments.length : '0';
+                
+                // Calculate total returns
+                let totalReturns = 0;
+                if (user.investments && user.investments.length > 0) {
+                    user.investments.forEach(inv => {
+                        totalReturns += inv.return || 0;
+                    });
+                    document.getElementById('totalReturns').textContent = `+${totalReturns.toFixed(2)}%`;
+                }
+                
+                // Calculate days active
+                const joinDate = user.joinDate ? new Date(user.joinDate) : new Date();
+                const today = new Date();
+                const diffTime = Math.abs(today - joinDate);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                document.getElementById('daysActive').textContent = diffDays;
+            }
+        }
+        
+        function loadInvestments() {
+            const user = JSON.parse(localStorage.getItem('brixa_user'));
+            const table = document.getElementById('investmentTable');
+            
+            if (!user || !user.investments || user.investments.length === 0) {
+                return;
+            }
+            
+            table.innerHTML = '';
+            
+            user.investments.forEach((investment, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td style="padding: 15px;">${investment.name}</td>
+                    <td style="padding: 15px;">$${investment.amount.toFixed(2)}</td>
+                    <td style="padding: 15px;">${investment.startDate || '2023-01-01'}</td>
+                    <td style="padding: 15px; color: #28a745; font-weight: 500;">+${investment.return.toFixed(2)}%</td>
+                    <td style="padding: 15px;"><span style="color: #28a745;">Active</span></td>
+                `;
+                table.appendChild(row);
+            });
+        }
+        
+        // Modal functions
+        let currentPlan = '';
+        let minAmount = 0;
+        let maxAmount = 0;
+        
+        function openInvestmentModal(plan, min, max) {
+            currentPlan = plan;
+            minAmount = min;
+            maxAmount = max;
+            
+            document.getElementById('modalTitle').textContent = `Invest in ${plan}`;
+            document.getElementById('investmentAmount').value = min;
+            document.getElementById('investmentAmount').min = min;
+            document.getElementById('amountRange').textContent = `Minimum: $${min}, Maximum: $${max}`;
+            
+            // Set expected returns based on plan
+            let returns = '5-8%';
+            if (plan === 'Growth Plan') returns = '8-12%';
+            if (plan === 'Pro Plan') returns = '12-18%';
+            
+            document.getElementById('expectedReturns').textContent = returns;
+            
+            // Set default duration based on plan
+            const durationSelect = document.getElementById('investmentDuration');
+            if (plan === 'Starter Plan') durationSelect.value = '6';
+            if (plan === 'Growth Plan') durationSelect.value = '12';
+            if (plan === 'Pro Plan') durationSelect.value = '24';
+            
+            updateInvestmentSummary();
+            
+            document.getElementById('investmentModal').style.display = 'block';
+        }
+        
+        function closeInvestmentModal() {
+            document.getElementById('investmentModal').style.display = 'none';
+        }
+        
+        function updateInvestmentSummary() {
+            const amount = parseFloat(document.getElementById('investmentAmount').value) || 0;
+            const duration = parseInt(document.getElementById('investmentDuration').value) || 6;
+            const plan = currentPlan;
+            
+            let monthlyRate = 0.065; // Default for Starter Plan (6.5%)
+            if (plan === 'Growth Plan') monthlyRate = 0.10; // 10%
+            if (plan === 'Pro Plan') monthlyRate = 0.15; // 15%
+            
+            const totalReturn = amount * monthlyRate * (duration / 12);
+            document.getElementById('totalExpected').textContent = `$${totalReturn.toFixed(2)}`;
+        }
+        
+        function processInvestment() {
+            const amount = parseFloat(document.getElementById('investmentAmount').value) || 0;
+            
+            if (amount < minAmount) {
+                alert(`Minimum investment amount is $${minAmount}`);
+                return;
+            }
+            
+            if (amount > maxAmount) {
+                alert(`Maximum investment amount is $${maxAmount}`);
+                return;
+            }
+            
+            // Get current user
+            const user = JSON.parse(localStorage.getItem('brixa_user'));
+            
+            // Add investment to user's portfolio
+            if (!user.investments) user.investments = [];
+            
+            user.investments.push({
+                name: currentPlan,
+                amount: amount,
+                startDate: new Date().toISOString().split('T')[0],
+                return: currentPlan === 'Starter Plan' ? 6.5 : 
+                       currentPlan === 'Growth Plan' ? 10 : 15
+            });
+            
+            // Update balance
+            user.balance = (user.balance || 0) + amount;
+            
+            // Save updated user
+            localStorage.setItem('brixa_user', JSON.stringify(user));
+            
+            // Update UI
+            loadUserData();
+            loadInvestments();
+            
+            // Show success modal
+            document.getElementById('successMessage').textContent = 
+                `You've successfully invested $${amount.toFixed(2)} in the ${currentPlan}.`;
+            document.getElementById('successModal').style.display = 'block';
+            
+            // Close investment modal
+            closeInvestmentModal();
+            
+            // Simulate Telegram notification
+            console.log(`Simulating Telegram notification for new investment: ${currentPlan} - $${amount}`);
+        }
+        
+        function closeSuccessModal() {
+            document.getElementById('successModal').style.display = 'none';
+        }
+        
+        function showDetails(plan) {
+            alert(`Detailed information about the ${plan} would be displayed here. This could include prospectus, historical performance, risk assessment, and more.`);
+        }
+        
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('brixa_user');
+            window.location.href = 'index.html';
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('investmentModal');
+            if (event.target === modal) {
+                closeInvestmentModal();
+            }
+            
+            const successModal = document.getElementById('successModal');
+            if (event.target === successModal) {
+                closeSuccessModal();
+            }
+        });
+    </script>
+</body>
+                      </html>
